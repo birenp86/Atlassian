@@ -22,6 +22,7 @@ public class SetRestrictionPage extends DFutil {
 	By openRestrictionOptions = By.cssSelector(".restrictions-dialog-option");
 	By selectRestrictionsOptions = By.cssSelector("#page-restrictions-dialog-selector");
 	By saveRestrictionsButton = By.cssSelector("#page-restrictions-dialog-save-button");
+	By currentRestriction = By.cssSelector("#content-metadata-page-restrictions");
 			
 	
 	
@@ -45,7 +46,7 @@ public class SetRestrictionPage extends DFutil {
 		log.info(E);
 	}
 
-	public void selectFile(String createFile) {
+	public String selectFile(String createFile) {
 		//select the file from list
 		log.info(S);
 		List<WebElement> wels = driver.findElements(listFiles);
@@ -54,11 +55,12 @@ public class SetRestrictionPage extends DFutil {
 			if(wel.getText().equals(createFile)){
 				log.info("true");
 				driver.findElement(By.linkText(createFile)).click();
+				
 				log.info(E);
 				break;
 			}
 		}
-		log.info("File not found");
+		return currentRestrictionTitle();
 	}
 
 	public void clickRestrictionMenu() {
@@ -80,6 +82,14 @@ public class SetRestrictionPage extends DFutil {
 		dropdown.selectByValue(restriction.toLowerCase());
 		saveRestrictionsSettings();
 		log.info(E);
+	}
+	
+	public String currentRestrictionTitle() {
+		log.info(S);
+		WebElement wel = driver.findElement(currentRestriction);
+		log.info("Current Restriction Title: " + wel.getAttribute("title"));
+		log.info(E);
+		return wel.getAttribute("title");
 	}
 
 	private void saveRestrictionsSettings() {

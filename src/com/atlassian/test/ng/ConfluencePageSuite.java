@@ -77,9 +77,15 @@ public class ConfluencePageSuite extends RootTest	{
 			restPage.clickAllUpdates();
 			Thread.sleep(1000);
 			restPage.selectFile(createdFile);
+			String currentRest = restPage.currentRestrictionTitle();
+			Assert.assertEquals(currentRest, "Unrestricted");
 			restPage.clickRestrictionMenu();
 			restPage.selectRestriction(restriction);
-
+			Thread.sleep(2000);
+			driver.navigate().refresh();
+			Thread.sleep(2000);
+			currentRest = restPage.currentRestrictionTitle();
+			Assert.assertEquals(currentRest, "Restrictions apply");
 			log.info(E);
 		} catch (Exception e) {
 			log.info(e.getLocalizedMessage());
