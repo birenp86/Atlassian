@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Confluence">
+	<test name="ConfluencePageSuite">
+		<parameter name="pageTitle" value="Atlassian Test Page" />
+		<parameter name="restriction" value="viewEdit" />
+		<classes>
+			<class name="com.atlassian.test.ng.ConfluencePageSuite" />
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->
